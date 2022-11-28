@@ -110,7 +110,7 @@ def pregunta_04():
     #   * Use parada temprana
 
     param_grid = {
-        ___: ____,  
+        a: ____,  
         ___: ____,  
         ___: ____,  
         ___: ____,  
