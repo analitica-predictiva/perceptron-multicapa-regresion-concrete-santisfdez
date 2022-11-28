@@ -16,16 +16,16 @@ def pregunta_01():
     Carga y separación de los datos en `X` `y`
     """
     # Lea el archivo `concrete.csv` y asignelo al DataFrame `df`
-    df = ____  
+    df = pd.read_csv("concrete.csv") 
 
     # Asigne la columna `strength` a la variable `y`.
-    ____ = ____  
+    y = df["strength"]  
 
     # Asigne una copia del dataframe `df` a la variable `X`.
-    ____ = ____.____(____)  
+    x = df.copy(deep=False)  
 
     # Remueva la columna `strength` del DataFrame `X`.
-    ____.____(____)  
+    x.drop("strength", axis=1, inplace=True)  
 
     # Retorne `X` y `y`
     return x, y
@@ -37,7 +37,7 @@ def pregunta_02():
     """
 
     # Importe train_test_split
-    from ____ import ____
+    from sklearn.model_selection import train_test_split
 
     # Cargue los datos de ejemplo y asigne los resultados a `X` y `y`.
     x, y = pregunta_01()
@@ -49,11 +49,11 @@ def pregunta_02():
         x_test,  
         y_train,  
         y_test,  
-    ) = ____(  
-        ____,  
-        ____,  
-        test_size=____,  
-        random_state=____,  
+    ) = train_test_split(  
+        x,  
+        y,  
+        test_size=0.25,  
+        random_state=12453,  
     )  
 
     # Retorne `X_train`, `X_test`, `y_train` y `y_test`
@@ -68,19 +68,21 @@ def pregunta_03():
     # Importe MLPRegressor
     # Importe MinMaxScaler
     # Importe Pipeline
-    from ____ import ____
-
+    from sklearn.pipeline import Pipeline
+    from sklearn.preprocessing import MinMaxScaler
+    from sklearn.neural_network import MLPRegressor
+    
     # Cree un pipeline que contenga un estimador MinMaxScaler y un estimador
     # MLPRegressor
     pipeline = Pipeline(
         steps=[
             (
                 "minmaxscaler",
-                ____(___),  
+                MinMaxScaler(),  
             ),
             (
                 "mlpregressor",
-                ____(____),  
+                MLPRegressor(),  
             ),
         ],
     )
